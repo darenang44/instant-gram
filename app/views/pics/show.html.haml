@@ -2,5 +2,6 @@
 - description "Placeholder description."
 - keywords "Placeholder keywords"
 
-- @pics.each do |pic|
-  %h2= link_to pic.title, pic
+%h1= @pic.title
+%p= @pic.description
+= link_to "Back", root_path
