@@ -2,7 +2,8 @@
 - description "Placeholder description."
 - keywords "Placeholder keywords"
 
-- @pics.each do |pic|
-  %h2= link_to pic.title, pic
+%h1 Edit Pic
 
-= link_to "Post Pic", new_pic_path
+= render "form"
+
+= link_to "Cancel", pic_path
