@@ -28,9 +28,11 @@
         <% end %>
       </div>
     </nav>
-    <% flash.each do |name, msg| %>
-    <div class="alert alert-info"> <%= msg %> </div>
-    <% end %>
-    <%= yield %>
+    <div class="container">
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-info"> <%= msg %> </div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>
