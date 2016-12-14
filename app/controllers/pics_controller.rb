@@ -1,5 +1,8 @@
 class PicsController < ApplicationController
-	before_action :find_pic, only: [:show, :edit, :update, :destroy]
+	before_action :find_pic, only: [:show, :edit, :update, :destroy, :upvote]
+
+  # this will allow any one who isn't signed in to only see the index and show action/pages(restricts user behavior)
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
   	@pics = Pic.all.order('created_at DESC')
@@ -43,6 +46,13 @@ class PicsController < ApplicationController
   	redirect_to root_path
   end
 
+  def upvote
+    # we have the @pic by the before_action 
+    # the @pic can only be upvoted by the current user
+    @pic.upvote_by current_user
+    # we want to redirect back to out show page
+    redirect_to :back
+  end
 
   private
   def pic_params

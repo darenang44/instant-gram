@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :pics
+  resources :pics do 
+  	# we want the route for liking a pic to be nested in the pic route
+  	member do 
+  		#put a like in the route path and do the upvote action in the pic controller
+  		put 'like', to: 'pics#upvote'
+  	end
+  end
+
   root 'pics#index'
 
 
@@ -33,4 +40,6 @@ Rails.application.routes.draw do
 #                          PATCH  /users(.:format)               devise/registrations#update
 #                          PUT    /users(.:format)               devise/registrations#update
 #                          DELETE /users(.:format)               devise/registrations#destroy
+
+#                 like_pic PUT    /pics/:id/like(.:format)       pic#upvote
 end
